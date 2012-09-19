@@ -75,9 +75,8 @@ class VerticalManipulation :
 		i = " "
 		n = 0
 		STM_parameters = {}
-		while i != "DATA\n" or "":
+		while i and ("DATA" not in i) and (i not in ["DATA", "DATA\n", "", "\n"]) :
 			i = self.file.next()
-			# if i[0].isalpha() and (n > 3) and (i.split("=")[0] not in ["UserPreampCode", "HPIB_Address", "ActGainXYZ", "PSTMAFM.EXE_Date", "DATA\n"]) : # for a real reading !
 			if i[0].isalpha() and (n > 3) and (i.split("=")[0] in ["Vertmandelay", "VertSpecBack"]) :
 				STM_parameters[i.split("=")[0]] = double(i.split("=")[-1])
 			n = n + 1
