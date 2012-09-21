@@ -220,3 +220,103 @@ def uitest(fname = ""):
 
 	wxuitest = UiTest(fname)
 	wxuitest.configure_traits()
+
+
+class Topography :
+	
+	def __init__(self, fname = "") :
+
+		self.fname = fname
+		self.fname_label = self.fname.split("\\")[-1]
+		self.data = []
+		self.NumX = 1
+		self.NumY = 1
+		self.LengthX = 1
+		self.LengthY = 1
+		self.Channels = 1
+		self.dataHeader = None
+		self.reading_header ()
+		self.load_data ()
+		self.compute_data ()
+		self.plot_data ()
+	
+			
+	def reading_header(self) :
+
+		with open(filename, "r") as f:
+			i = " "
+			n = 0
+			STM_parameters = {}
+			while i and ("DATA" not in i) and (i not in ["DATA", "DATA\n", "", "\n"]) :
+				i = f.next()
+				if i[0].isalpha() and (n > 3) and (i.split("=")[0] in ["Num.X / Num.X", "Num.Y / Num.Y", "Length x[A]", "Length y[A]", "Channels"]) :
+					STM_parameters[i.split("=")[0]] = double(i.split("=")[-1])
+				n = n + 1
+
+			self.NumX = STM_parameters["Num.X / Num.X"]
+			self.NumY = STM_parameters["Num.Y / Num.T"]
+			self.LengthX = STM_parameters["Length x[A]"]
+			self.LengthY = STM_parameters["Lenght y[A]"]
+			self.Channels = STM_parameters["Channels"]
+				
+
+	def load_data (self) :
+
+		with open(filename, "rb") as f :
+			for i in range (128) :
+				f.read(128)
+			while True :
+				chunk = f.read(4)
+				if chunk:
+					for b in chunk :
+						print b
+					else:
+						break
+
+		self.data.append (self.file.next().split("\t")[0:-1])
+		array_width = len (self.data[0])
+		try :
+			self.data = hsplit (array (self.data), array_width)
+		except RuntimeError :
+			print ("Enable to split the read data buffer into column(s).")
+			raise
+		try :
+			self.file.close()
+		except IOError :
+			print ("Enable to close the file.")
+			raise
+		
+	def compute_data (self) :
+
+		self.parameters["i"] = double(self.data[0]).T[0]
+		self.parameters["V"] = double(self.data[1]).T[0]
+		self.parameters["z"] = double(self.data[2]).T[0]
+		
+		# Convert the index of the data in vertical manipulation time
+		# The formula seems tricky but there is a 20e-6 s delaytime to take into account
+		self.parameters["t"] = array(double(self.data[0]).T[0]) * 20e-6 * self.Vertmandelay / (2 - self.VertSpecBack)
+		
+		n = 0
+		for i in VERT_enc :
+			if self.dataHeader & (1 << i) :
+				self.finalTab[i]["data"] = double (self.data [n + 3]).T[0]
+				n = n + 1
+
+				
+	def plot_data (self) :
+		
+		_xlab = {
+			"i" : "Index",
+			"t" : "Duration (s)",
+			"V" : "Bias Voltage (mV)",
+			"z" : "Height (Angs)"
+		}
+	
+		for i in self.finalTab :
+			figure ()
+			plot (self.parameters[self.plotting_mode], self.finalTab[i]["data"])
+			title (self.finalTab[i]["header"])
+			xlabel(_xlab[self.plotting_mode])
+			ylabel(self.finalTab[i]["ylabel"])
+			text (1.05, 1, self.fname_label, transform = gca().transAxes, rotation = 90)
+
