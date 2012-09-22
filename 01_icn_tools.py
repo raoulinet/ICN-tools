@@ -266,6 +266,15 @@ class VerticalManipulation :
 		title ("dI/dV" + " " + deal_with_fname(self.fname_label))
 		xlabel("Bias (mV)")
 		ylabel("Differential conductance")
+
+
+	def load_file(self) :
+		self.opening_file()
+		self.reading_header()
+		self.load_data()
+		self.compute_data()
+		self.plot_data()
+		self.close_file()
 			
 			
 class UiTest(eta.HasTraits):
