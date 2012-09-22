@@ -194,19 +194,23 @@ class VerticalManipulation :
 				
 			
 	def load_data (self) :
+		"""
+		>>> vm = VerticalManipulation("test_file.VERT")
+		>>> vm.open_file()
+		>>> vm.reading_header()
+		>>> vm.load_data()
+		array_width : 5
+		"""
 
 		for line in self.file :
 			self.data.append (self.file.next().split("\t")[0:-1])
 		array_width = len (self.data[0])
+		print "array_width : " + str(array_width)
+
 		try :
 			self.data = hsplit (array (self.data), array_width)
 		except RuntimeError :
 			print ("Enable to split the read data buffer into column(s).")
-			raise
-		try :
-			self.file.close()
-		except IOError :
-			print ("Enable to close the file.")
 			raise
 		
 	def compute_data (self) :
