@@ -253,14 +253,19 @@ class VerticalManipulation :
 			"z" : "Height (Angs)"
 		}
 	
-		for i in self.finalTab :
-			figure ()
-			plot (self.parameters[self.plotting_mode], self.finalTab[i]["data"])
-			title (self.finalTab[i]["header"])
-			xlabel(_xlab[self.plotting_mode])
-			ylabel(self.finalTab[i]["ylabel"])
-			text (1.05, 1, self.fname_label, transform = gca().transAxes, rotation = 90)
+		# for i in [4] : #self.finalTab :
+		# 	figure ()
+		# 	plot (self.parameters[self.plotting_mode], self.finalTab[i]["data"], "r", label = self.finalTab[i]["ylabel"] + " " + deal_with_fname(self.fname_label))
+		# 	title (self.finalTab[i]["ylabel"] + " " + deal_with_fname(self.fname_label))
+		# 	xlabel(_xlab[self.plotting_mode])
+		# 	ylabel(self.finalTab[i]["ylabel"])
 
+
+		figure ()
+		plot (self.parameters["V"], self.finalTab[4]["data"], "r", label = "dI/dV " + deal_with_fname(self.fname_label))
+		title ("dI/dV" + " " + deal_with_fname(self.fname_label))
+		xlabel("Bias (mV)")
+		ylabel("Differential conductance")
 			
 			
 class UiTest(eta.HasTraits):
