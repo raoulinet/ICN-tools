@@ -38,7 +38,71 @@ VERT_yenc = {
 	12 : "Topography (DAC 0)"
 	}
 
-	
+
+def deal_with_fname(fname) :
+	"""
+	>>> deal_with_fname("A120423.183450.VERT")
+	'18:34:50 23/04/2012'
+	"""
+	return fname[8:10] + ":" + fname[10:12] + ":" + fname[12:14] + " "\
+				+ fname[5:7] + "/" + fname[3:5] + "/20" + fname[1:3]
+
+
+def convert_filename(filename):
+	"""
+	Function that uniformed the Windows or Unix pathes.
+	A path with \ in it has to be return with /
+	>>> convert_filename("C:\\mon fichier\\rpiquerel\\file.VERT")
+	'C:/mon fichier/rpiquerel/file.VERT'
+	>>> convert_filename("C:/mon fichier/rpiquerel/file.VERT")
+	'C:/mon fichier/rpiquerel/file.VERT'
+	"""
+	filename = filename.replace("\r", '/r')
+	filename = filename.replace("\f", '/f')
+	return filename.replace("\\", '/')
+
+
+def shortned_filename(filename):
+	"""
+	>>> shortned_filename("C:/mon fichier/Rpiquerel/File.VERT")
+	'File.VERT'
+	"""
+	return filename.split("/")[-1]
+
+
+def key_equal(s, key_list):
+	"""
+	>>> key_equal('Num.X / Num.X=256', ['Num.X / Num.X'])
+	True
+	>>> key_equal('Num.X / Num.X=256', ['Num.X/Num.X'])
+	False
+	"""
+	if key_list :
+		for i in key_list :
+			if i not in s.split("=")[0] :
+				return False
+	return True
+
+
+def process_key_value_from_parameters(s, n, key_list=[], skip_rows=-1):
+	"""
+	>>> process_key_value_from_parameters("LengthX = 256", 0, ["LengthX"])
+	('LengthX ', 256.0)
+	>>> process_key_value_from_parameters("LengthX = 256", 0, ["LengthX"], 2)
+	(None, None)
+	>>> process_key_value_from_parameters("", 0)
+	(None, None)
+	>>> process_key_value_from_parameters("abc", 0)
+	(None, None)
+	>>> process_key_value_from_parameters(" abc", 0, ["abc"])
+	(None, None)
+	>>> process_key_value_from_parameters("=truc", 0, ["truc"])
+	(None, None)
+	"""
+	if s and ("=" in s) and s[0].isalpha() and (n > skip_rows) and key_equal(s, key_list) :
+				return (s.split("=")[0], double(s.split("=")[-1]))
+	return (None, None)
+
 class VerticalManipulation :
 	
 	def __init__(self, fname = "", plotting_mode = "V") :
