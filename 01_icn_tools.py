@@ -23,13 +23,13 @@ VERT_enc = {
 	}
 	
 VERT_yenc = {
-	0 : "I (a.u.)",
-	1 : "dI/dV (a.u.)",
-	2 : "d2I/dV2 (a.u.)",
-	3 : "I (a.u.)",
-	4 : "Re dI/dV (a.u.)",
-	5 : "Im dI/dV (a.u.)",
-	6 : "d2I/dV2 (a.u.)",
+	0 : "I",
+	1 : "dI/dV",
+	2 : "d2I/dV2",
+	3 : "I",
+	4 : "dI/dV",
+	5 : "Imaginary",
+	6 : "d2I/dV2",
 	7 : "Nada",
 	8 : "Nada de nada",
 	9 : "Nada de nada de nada",
