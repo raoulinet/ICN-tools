@@ -270,7 +270,7 @@ class VerticalManipulation :
 
 
 	def load_file(self) :
-		self.opening_file()
+		self.open_file()
 		self.reading_header()
 		self.load_data()
 		self.compute_data()
