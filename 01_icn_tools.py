@@ -107,9 +107,9 @@ class VerticalManipulation :
 	
 	def __init__(self, fname = "", plotting_mode = "V") :
 
-		self.fname = fname
-		self.fname_label = self.fname.split("\\")[-1]
-		self.file = ""
+		self.fname = convert_filename(fname)
+		self.fname_label = shortned_filename(fname)
+		self.file = None
 		self.data = []
 		self.finalTab = {}
 		self.parameters = {"i" : [], "t" : [], "V" : [], "z" : []}
