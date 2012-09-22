@@ -64,8 +64,8 @@ def convert_filename(filename):
 
 def shortned_filename(filename):
 	"""
-	>>> shortned_filename("C:/mon fichier/Rpiquerel/File.VERT")
-	'File.VERT'
+	>>> print shortned_filename("C:/mon fichier/Rpiquerel/File.VERT")
+	File.VERT
 	"""
 	return filename.split("/")[-1]
 
