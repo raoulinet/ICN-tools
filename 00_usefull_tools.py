@@ -300,6 +300,30 @@ def colorize(palette = "fancy", offset = 0, period = None):
 
 
 
+def offset(offset = 0):
+	"""
+	Add an offset to curves
+	"""
+
+	_min = 1e31
+	_max = -1e31
+
+	n = 0
+	for i in gca().lines:
+		y0 = i.get_ydata()
+		i.set_ydata(y0 + n*offset)
+		n = n + 1
+		if y0.min() + n*offset < _min :
+			_min = y0.min() + n*offset 
+		if y0.max() + n*offset > _max :
+			_max = y0.max() + n*offset 
+	
+	ylim(_min,_max)
+
+	draw()
+
+
+
 def get_data(layer = -1):
 	"""
 	get_data
