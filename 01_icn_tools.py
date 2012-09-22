@@ -118,11 +118,6 @@ class VerticalManipulation :
 		self.opening_filter = []
 		self.dataHeader = None
 		self.plotting_mode = plotting_mode
-		self.opening_file ()
-		self.reading_header ()
-		self.load_data ()
-		self.compute_data ()
-		self.plot_data ()
 	
 
 	def open_file(self) :
@@ -245,7 +240,13 @@ class UiTest(eta.HasTraits):
 
 		if self.fname[-5:-1] == ".VER" :
 			try :
-				VerticalManipulation(self.fname, self.plotting)
+				vm = VerticalManipulation(self.fname, self.plotting)
+				vm.open_file ()
+				vm.reading_header ()
+				vm.load_data ()
+				vm.compute_data ()
+				vm.plot_data ()
+				vm.close_file ()
 			except :
 				print("Warning : Fail to open the vertical manipulation.")
 				raise
