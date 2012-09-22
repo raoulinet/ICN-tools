@@ -146,24 +146,48 @@ class VerticalManipulation :
 
 			
 	def reading_header(self) :
+		"""
+		>>> vm = VerticalManipulation("test_file.VERT")
+		>>> vm.open_file()
+		>>> vm.reading_header()
+		>>> print "Vertmandelay : " + str(vm.Vertmandelay) + ", VertSpacBack : " + str(vm.VertSpecBack)
+		Vertmandelay : 61.0, VertSpacBack : 1.0
+		>>> vm.dataHeader
+		17
+		>>> vm.finalTab.keys()
+		[0, 4]
+		"""
 		
-		i = " "
-		n = 0
 		STM_parameters = {}
-		while i and ("DATA" not in i) and (i not in ["DATA", "DATA\n", "", "\n"]) :
-			i = self.file.next()
-			if i[0].isalpha() and (n > 3) and (i.split("=")[0] in ["Vertmandelay", "VertSpecBack"]) :
-				STM_parameters[i.split("=")[0]] = double(i.split("=")[-1])
-			n = n + 1
+		skip_rows = 3
+		key_list = ["Vertmandelay", "VertSpecBack"]
 
+		for i in range (skip_rows) :
+			self.file.next()
+
+		for s in self.file :
+			if "DATA" in s :
+				break
+			if s and ("=" in s) and s[0].isalpha() :
+				s0, s1 = s.split("=")
+				if s0 in key_list :
+					STM_parameters[s0] = double(s.split("=")[-1])
+
+		for k in key_list :
+			if STM_parameters.has_key(k) :
+				pass
+			else :
+				print "Warning : problem to read the STM parameters"
+				raise
 		self.Vertmandelay = STM_parameters["Vertmandelay"]
 		self.VertSpecBack = STM_parameters["VertSpecBack"]
-				
+
 		try :
 			self.dataHeader = int(self.file.next().split(" ")[-1])
 		except ValueError:
 			print "Could not deduce headers."
 			raise
+
 		for i in VERT_enc :
 			if self.dataHeader & (1 << i) :
 				self.finalTab[i] = {"name": None, "header" : VERT_enc[i], "ylabel" : VERT_yenc[i], "data" : None}
