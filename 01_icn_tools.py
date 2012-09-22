@@ -214,6 +214,20 @@ class VerticalManipulation :
 			raise
 		
 	def compute_data (self) :
+		"""
+		>>> vm = VerticalManipulation("test_file.VERT")
+		>>> vm.open_file()
+		>>> vm.reading_header()
+		>>> vm.load_data()
+		array_width : 5
+		>>> vm.compute_data()
+		>>> print vm.parameters["i"][0], vm.parameters["V"][0], vm.parameters["z"][0], vm.parameters["t"][0], 
+		1.0 -1198.83 0.0 0.00122
+		>>> print len(vm.parameters["i"])
+		4096
+		>>> print vm.parameters["i"][4095], vm.parameters["V"][4095], vm.parameters["z"][4095], vm.parameters["t"][4095], 
+		8191.0 -1199.41 0.0 9.99302
+		"""
 
 		self.parameters["i"] = double(self.data[0]).T[0]
 		self.parameters["V"] = double(self.data[1]).T[0]
