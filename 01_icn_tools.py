@@ -125,13 +125,29 @@ class VerticalManipulation :
 		self.plot_data ()
 	
 
-	def opening_file(self) :
+	def open_file(self) :
+		"""
+		The file has to be open correctly.
+		>>> vm = VerticalManipulation("test_file.VERT")
+		>>> vm.open_file()
+		>>> print vm.file != None
+		True
+		>>> vm = VerticalManipulation("")
+		>>> vm.open_file()
+		>>> print vm.file != None
+		False
+		"""
+		if self.fname :
+			try :
+				self.file = open(self.fname, "r")
+				return
+			except :
+				print "Warning : did not open the file correctly"
+		self.file = None
 	
-		try :
-			self.file = open(self.fname, "r")
-		except:
-			print "Unexpected error while opening the file."
-			raise
+
+	def close_file(self) :
+		self.file.close()
 
 			
 	def reading_header(self) :
