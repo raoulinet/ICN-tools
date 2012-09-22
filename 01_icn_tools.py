@@ -213,6 +213,7 @@ class VerticalManipulation :
 			print ("Enable to split the read data buffer into column(s).")
 			raise
 		
+
 	def compute_data (self) :
 		"""
 		>>> vm = VerticalManipulation("test_file.VERT")
@@ -357,3 +358,9 @@ def uitest(fname = ""):
 
 	wxuitest = UiTest(fname)
 	wxuitest.configure_traits()
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+
