@@ -268,8 +268,8 @@ class VerticalManipulation :
 
 
 		figure ()
-		plot (self.parameters["V"], self.finalTab[4]["data"], "r", label = "dI/dV " + deal_with_fname(self.fname_label))
-		title ("dI/dV" + " " + deal_with_fname(self.fname_label))
+		plot (self.parameters["V"], self.finalTab[4]["data"], "r", label = deal_with_fname(self.fname_label))
+		title (deal_with_fname(self.fname_label))
 		xlabel("Bias (mV)")
 		ylabel("Differential conductance")
 
@@ -287,7 +287,7 @@ class VerticalManipulation :
 	
 		self.X = self.parameters["V"]
 		self.Y = self.finalTab[4]["data"]
-		self.label = "dI/dV " + deal_with_fname(self.fname_label)
+		self.label = deal_with_fname(self.fname_label)
 
 
 	def load_file(self) :
