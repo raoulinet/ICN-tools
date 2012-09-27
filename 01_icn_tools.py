@@ -42,8 +42,10 @@ VERT_yenc = {
 def deal_with_fname(fname) :
 	"""
 	>>> deal_with_fname("A120423.183450.VERT")
-	'18:34:50 23/04/2012'
+	'A120423.183450'
+	other choice could be : '18:34:50 23/04/2012'
 	"""
+	return fname[0:14]
 	return fname[8:10] + ":" + fname[10:12] + ":" + fname[12:14] + " "\
 				+ fname[5:7] + "/" + fname[3:5] + "/20" + fname[1:3]
 
@@ -284,7 +286,7 @@ class VerticalManipulation :
 	
 		self.X = self.parameters["V"]
 		self.Y = self.finalTab[4]["data"]
-		self.label = "dI/dV " + deal_with_fname(self.fname_label))
+		self.label = "dI/dV " + deal_with_fname(self.fname_label)
 
 
 	def load_file(self) :
