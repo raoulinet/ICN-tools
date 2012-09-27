@@ -305,8 +305,7 @@ def offset(offset = 0):
 	Add an offset to curves
 	"""
 
-	_min = 1e31
-	_max = -1e31
+	_min, _max = ylim ()
 
 	n = 0
 	for i in gca().lines:
