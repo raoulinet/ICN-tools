@@ -111,6 +111,8 @@ class VerticalManipulation :
 		self.fname_label = shortned_filename(fname)
 		self.file = None
 		self.data = []
+		self.X = []
+		self.Y = []
 		self.finalTab = {}
 		self.parameters = {"i" : [], "t" : [], "V" : [], "z" : []}
 		self.Vertmandelay = 1
@@ -269,14 +271,38 @@ class VerticalManipulation :
 		ylabel("Differential conductance")
 
 
+	def set_XY (self) :
+		"""
+		Maybe the user prefer to store XY data in arrays to plot is later.
+		"""
+		_xlab = {
+			"i" : "Index",
+			"t" : "Duration (s)",
+			"V" : "Bias Voltage (mV)",
+			"z" : "Height (Angs)"
+		}
+	
+		self.X = self.parameters["V"]
+		self.Y = self.finalTab[4]["data"]
+		self.label = "dI/dV " + deal_with_fname(self.fname_label))
+
+
 	def load_file(self) :
+		self.open_file()
+		self.reading_header()
+		self.load_data()
+		self.compute_data()
+		self.set_XY()		
+		self.close_file()
+
+	def plot_file(self) :
 		self.open_file()
 		self.reading_header()
 		self.load_data()
 		self.compute_data()
 		self.plot_data()
 		self.close_file()
-			
+
 			
 class UiTest(eta.HasTraits):
 
