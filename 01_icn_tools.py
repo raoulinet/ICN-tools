@@ -43,6 +43,7 @@ def deal_with_fname(fname) :
 	"""
 	>>> deal_with_fname("A120423.183450.VERT")
 	'A120423.183450'
+	
 	other choice could be : '18:34:50 23/04/2012'
 	"""
 	return fname[0:14]
