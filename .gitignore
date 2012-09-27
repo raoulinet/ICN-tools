@@ -1,5 +1,11 @@
 *.py[co]
 
+*.doc*
+*.ppt*
+*.ipynb
+*.php
+*.zip
+
 # Packages
 *.egg
 *.egg-info
