@@ -359,7 +359,7 @@ def uitest(fname = ""):
 	wxuitest.configure_traits()
 
 
-if __name__ == "__main__":
+if False and __name__ == "__main__":
     import doctest
     doctest.testmod()
 
