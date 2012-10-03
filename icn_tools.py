@@ -42,8 +42,11 @@ VERT_yenc = {
 def deal_with_fname(fname) :
 	"""
 	>>> deal_with_fname("A120423.183450.VERT")
-	'18:34:50 23/04/2012'
+	'A120423.183450'
+	
+	other choice could be : '18:34:50 23/04/2012'
 	"""
+	return fname[0:14]
 	return fname[8:10] + ":" + fname[10:12] + ":" + fname[12:14] + " "\
 				+ fname[5:7] + "/" + fname[3:5] + "/20" + fname[1:3]
 
@@ -111,6 +114,8 @@ class VerticalManipulation :
 		self.fname_label = shortned_filename(fname)
 		self.file = None
 		self.data = []
+		self.X = []
+		self.Y = []
 		self.finalTab = {}
 		self.parameters = {"i" : [], "t" : [], "V" : [], "z" : []}
 		self.Vertmandelay = 1
@@ -262,10 +267,26 @@ class VerticalManipulation :
 
 
 		figure ()
-		plot (self.parameters["V"], self.finalTab[4]["data"], "r", label = "dI/dV " + deal_with_fname(self.fname_label))
-		title ("dI/dV" + " " + deal_with_fname(self.fname_label))
+		plot (self.parameters["V"], self.finalTab[4]["data"], "r", label = deal_with_fname(self.fname_label))
+		title (deal_with_fname(self.fname_label))
 		xlabel("Bias (mV)")
 		ylabel("Differential conductance")
+
+
+	def set_XY (self) :
+		"""
+		Maybe the user prefer to store XY data in arrays to plot is later.
+		"""
+		_xlab = {
+			"i" : "Index",
+			"t" : "Duration (s)",
+			"V" : "Bias Voltage (mV)",
+			"z" : "Height (Angs)"
+		}
+	
+		self.X = self.parameters["V"]
+		self.Y = self.finalTab[4]["data"]
+		self.label = deal_with_fname(self.fname_label)
 
 
 	def load_file(self) :
@@ -273,9 +294,17 @@ class VerticalManipulation :
 		self.reading_header()
 		self.load_data()
 		self.compute_data()
+		self.set_XY()		
+		self.close_file()
+
+	def plot_file(self) :
+		self.open_file()
+		self.reading_header()
+		self.load_data()
+		self.compute_data()
 		self.plot_data()
 		self.close_file()
-			
+
 			
 class UiTest(eta.HasTraits):
 
