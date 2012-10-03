@@ -220,7 +220,6 @@ class VerticalManipulation :
 		>>> vm.open_file()
 		>>> vm.reading_header()
 		>>> vm.load_data()
-		array_width : 5
 		>>> vm.compute_data()
 		>>> print vm.parameters["i"][0], vm.parameters["V"][0], vm.parameters["z"][0], vm.parameters["t"][0], 
 		1.0 -1198.83 0.0 0.00122
