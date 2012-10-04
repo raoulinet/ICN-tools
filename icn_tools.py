@@ -5,6 +5,7 @@ import enthought.traits.ui.api as etua
 import enthought.traits.ui.menu as etum
 import enthought.traits.ui.wx.tree_editor as etuwt
 import enthought.pyface.api as epa
+import os
 
 VERT_enc = {
 	0 : "Current",
@@ -106,6 +107,11 @@ def process_key_value_from_parameters(s, n, key_list=[], skip_rows=-1):
 				return (s.split("=")[0], double(s.split("=")[-1]))
 	return (None, None)
 
+
+
+EXPECTED_ERRORS = ["NO_TARGET_FILE",
+                   "FILE_PROBLEM"]
+
 class VerticalManipulation :
 	
 	def __init__(self, fname = "", plotting_mode = "V") :
@@ -137,14 +143,16 @@ class VerticalManipulation :
 		>>> print vm.file != None
 		False
 		"""
-		if self.fname :
-			try :
-				self.file = open(self.fname, "r")
-				return
-			except :
-				print "Warning : did not open the file correctly"
-		self.file = None
-	
+		if not os.path.exists(self.fname) :
+			print self.fname + " : no such file"
+			return "NO_TARGET_FILE"
+
+		try :
+			self.file = open(self.fname, "r")
+		except IOError as e:
+			print e, self.fname," did not open the file correctly"
+			return "FILE_PROBLEM"
+		return
 
 	def close_file(self) :
 		self.file.close()
@@ -290,15 +298,21 @@ class VerticalManipulation :
 
 
 	def load_file(self) :
-		self.open_file()
+		ee = self.open_file()
+		if ee in EXPECTED_ERRORS :
+			print ee, "Leave VM processing"
+			return None
 		self.reading_header()
 		self.load_data()
 		self.compute_data()
 		self.set_XY()		
 		self.close_file()
+		return self
 
 	def plot_file(self) :
-		self.open_file()
+		ee = self.open_file()
+		if ee in EXPECTED_ERRORS :
+			print ee, "Leave VM processing"
 		self.reading_header()
 		self.load_data()
 		self.compute_data()
