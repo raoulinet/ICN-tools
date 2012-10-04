@@ -1,2 +1,2 @@
-execfile("/Users/raoul/ICN-tools/usefull_tools.py")
-execfile("/Users/raoul/ICN-tools/icn_tools.py")
+execfile("usefull_tools.py")
+execfile("icn_tools.py")
