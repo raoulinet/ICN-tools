@@ -529,8 +529,8 @@ def line_matrix(bottom = None, top = None, xstep = 1, ystep = 1):
     inty = range((ymax - ymin)/ystep)
 
     for j in intx:
-    for k in inty:
-        cc[k][j] = 0
+        for k in inty:
+            cc[k][j] = 0
 
     if len(gca().lines) == 1:
         offset = 1
