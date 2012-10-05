@@ -566,6 +566,12 @@ def hsplitlist (liste, slices) :
 def vsplitlist (liste, slices) :
     return vsplit(array(liste), slices)
 
+
+def deltaXY (timeout = 30) :
+    a, b = hsplitlist (ginput (n = 2, timeout = timeout)[0], 2)
+    return a[1] - a[0], b[1] - b[0]
+
+
 ################################################################################
 #                                                                              #
 # Different class of usefull graph.                                            #
