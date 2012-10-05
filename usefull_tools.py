@@ -4,107 +4,107 @@ import os
 import sys
 
 color_corr = {
-	"b": "blue",
-	"g": "green",
-	"r": "red",
-	"c": "cyan",
-	"m": "magenta",
-	"y": "yellow",
-	"w": "white",
-	"k": "black"
+    "b": "blue",
+    "g": "green",
+    "r": "red",
+    "c": "cyan",
+    "m": "magenta",
+    "y": "yellow",
+    "w": "white",
+    "k": "black"
 }
 
 
 
 default_colors = [
-	"b",
-	"g",
-	"r",
-	"c",
-	"m",
-	"y",
-	"k"
+    "b",
+    "g",
+    "r",
+    "c",
+    "m",
+    "y",
+    "k"
 ]
 
 
 
 web_colors = [
-	'maroon',
-	'red',
-	'purple',
-	'fuchsia',
-	'green',
-	'lime',
-	'olive',
-	'yellow',
-	'navy',
-	'blue',
-	'teal',
-	'aqua'
+    'maroon',
+    'red',
+    'purple',
+    'fuchsia',
+    'green',
+    'lime',
+    'olive',
+    'yellow',
+    'navy',
+    'blue',
+    'teal',
+    'aqua'
 ]
 
 
 
 brown_colors = [
-	'cornsilk',
-	'blanchedalmond',
-	'bisque',
-	'navajowhite',
-	'wheat',
-	'burlywood',
-	'tan',
-	'rosybrown',
-	'sandybrown',
-	'goldenrod',
-	'darkgoldenrod',
-	'peru',
-	'chocolate',
-	'saddlebrown',
-	'sienna',
-	'brown',
-	'maroon'
+    'cornsilk',
+    'blanchedalmond',
+    'bisque',
+    'navajowhite',
+    'wheat',
+    'burlywood',
+    'tan',
+    'rosybrown',
+    'sandybrown',
+    'goldenrod',
+    'darkgoldenrod',
+    'peru',
+    'chocolate',
+    'saddlebrown',
+    'sienna',
+    'brown',
+    'maroon'
 ]
 
 
 
 fancy_colors = [
-	"orchid",
-	"firebrick",
-	"orange",
-	"peru",
-	"olive",
-	"saddlebrown",
-	"mediumseagreen",
-	"darkgreen",
-	"slategrey",
-	"skyblue",
-	"royalblue"
+    "orchid",
+    "firebrick",
+    "orange",
+    "peru",
+    "olive",
+    "saddlebrown",
+    "mediumseagreen",
+    "darkgreen",
+    "slategrey",
+    "skyblue",
+    "royalblue"
 ]
 
 
 
 curve_line = {
-	"none":"None",
-	"solid": "-",
-	"dash": "--",
-	"dot": "--",
-	"dash dot": "--",
-	"dash dot dot": "--"
+    "none":"None",
+    "solid": "-",
+    "dash": "--",
+    "dot": "--",
+    "dash dot": "--",
+    "dash dot dot": "--"
 }
 
 
 
 curve_marker = {
-	"none": "None",
-	"plus": "+",
-	"cross": "x",
-	"asterisk": "h",
-	"circle": ",",
-	"square": "s",
-	"diamond": "1",
-	"triangle up": "2",
-	"triangle down": "3",
-	"star": "4"
+    "none": "None",
+    "plus": "+",
+    "cross": "x",
+    "asterisk": "h",
+    "circle": ",",
+    "square": "s",
+    "diamond": "1",
+    "triangle up": "2",
+    "triangle down": "3",
+    "star": "4"
 }
 
 
@@ -121,363 +121,363 @@ curve_marker = {
 ################################################################################
 
 def cf():
-	"""
-	cf
-	"""
+    """
+    cf
+    """
 
-	return gcf()
+    return gcf()
 
 
 
 def cAs():
-	"""
-	ca
-	"""
+    """
+    ca
+    """
 
-	return getp(cf(), 'axes')
+    return getp(cf(), 'axes')
 
 
 
 def cA(num = -1):
-	"""
-	cA
-	"""
+    """
+    cA
+    """
 
-	return getp(cf(), 'axes')[num]
+    return getp(cf(), 'axes')[num]
 
 
 
 def ci():
-	"""
-	ci
-	"""
+    """
+    ci
+    """
 
-	return gci()
+    return gci()
 
 
 
 def cl(line_number = -1):
-	"""
-	cl
-	"""
+    """
+    cl
+    """
 
-	return gca().lines[line_number]
+    return gca().lines[line_number]
 
 
 
 def cls(lower = 0, higher = None):
-	"""
-	cls
-	"""
+    """
+    cls
+    """
 
-	if higher == None:
-		higher = len(gca().lines)
+    if higher == None:
+        higher = len(gca().lines)
 
-	n = 0
+    n = 0
 
-	for i in gca().lines:
-		print("# " + str(n)
-		+ "\tmarker: " + str(i.get_marker())
-		+ "\tline: " + str(i.get_linestyle())
-		+ "\tcolor: " + str(i.get_color())
-		+ "\tlen: " + str(len(i.get_xdata())))
-		n += 1
+    for i in gca().lines:
+        print("# " + str(n)
+        + "\tmarker: " + str(i.get_marker())
+        + "\tline: " + str(i.get_linestyle())
+        + "\tcolor: " + str(i.get_color())
+        + "\tlen: " + str(len(i.get_xdata())))
+        n += 1
 
-	return gca().lines[lower : higher]
-
-
-
-def ct(text_number = -1):
-	"""
-	ct
-	"""
-
-	return gca().texts[text_number]
+    return gca().lines[lower : higher]
 
 
 
 def ct(text_number = -1):
-	"""
-	ct
-	"""
+    """
+    ct
+    """
 
-	return gca().texts
+    return gca().texts[text_number]
+
+
+
+def ct(text_number = -1):
+    """
+    ct
+    """
+
+    return gca().texts
 
 
 
 def cx():
-	"""
-	cx
-	"""
-	
-	return ca().xaxis
+    """
+    cx
+    """
+    
+    return ca().xaxis
 
 
 
 def cy():
-	"""
-	cy
-	"""
-	
-	return ca().yaxis
+    """
+    cy
+    """
+    
+    return ca().yaxis
 
 
 
 def cT():
-	"""
-	cT
-	"""
-	
-	return ca().title
+    """
+    cT
+    """
+    
+    return ca().title
 
 
 
 def cPs():
-	"""
-	"""
+    """
+    """
 
-	return filter(lambda i: type(i) == Polygon, getp(ca(), 'children'))
+    return filter(lambda i: type(i) == Polygon, getp(ca(), 'children'))
 
 
 
 def cP(num = -1):
-	"""
-	"""
+    """
+    """
 
-	return filter(lambda i: type(i) == Polygon, getp(ca(), 'children'))[num]
+    return filter(lambda i: type(i) == Polygon, getp(ca(), 'children'))[num]
 
 
 
 def cEs():
-	"""
-	"""
+    """
+    """
 
-	return filter(lambda i: type(i) == Ellipse, getp(ca(), 'children'))
+    return filter(lambda i: type(i) == Ellipse, getp(ca(), 'children'))
 
 
 
 def cE(num = -1):
-	"""
-	"""
+    """
+    """
 
-	return filter(lambda i: type(i) == Ellipse, getp(ca(), 'children'))[num]
+    return filter(lambda i: type(i) == Ellipse, getp(ca(), 'children'))[num]
 
 
 
 def colorize(palette = "fancy", offset = 0, period = None):
-	"""
-	to colorize lines depdening of layers
-	"""
+    """
+    to colorize lines depdening of layers
+    """
 
-	if type(palette) == str:
-		if palette == "fancy":
-			colors = fancy_colors
-		else:
-			if palette == "web":
-				colors = web_colors
-			else:
-				if palette == "brown":
-					colors = brown_colors
-				else:
-					colors = default_colors
-	elif type(palette) == list:
-		colors = palette
-	else:
-		colors = default_colors
+    if type(palette) == str:
+        if palette == "fancy":
+            colors = fancy_colors
+        else:
+            if palette == "web":
+                colors = web_colors
+            else:
+                if palette == "brown":
+                    colors = brown_colors
+                else:
+                    colors = default_colors
+    elif type(palette) == list:
+        colors = palette
+    else:
+        colors = default_colors
 
-	if period == None:
-		period = len(colors)
+    if period == None:
+        period = len(colors)
 
-	n = len(gca().lines)
+    n = len(gca().lines)
 
-	for i in range(n):
-		tmp_col = colors[i%period + offset%(len(colors) - 1)]
-		gca().lines[i].set_color(tmp_col)
-		gca().lines[i].set_markerfacecolor(tmp_col)
-		gca().lines[i].set_markeredgecolor(tmp_col)
+    for i in range(n):
+        tmp_col = colors[i%period + offset%(len(colors) - 1)]
+        gca().lines[i].set_color(tmp_col)
+        gca().lines[i].set_markerfacecolor(tmp_col)
+        gca().lines[i].set_markeredgecolor(tmp_col)
 
-	draw()
+    draw()
 
 
 
 def offset(offset):
-	"""
-	Add an offset to curves
-	"""
+    """
+    Add an offset to curves
+    """
 
-	# Providing only one value for the offset means that
-	# the same offset is applied
-	if type(offset) in [int, float] :
-		offset = offset * ones(len(gca().lines))
+    # Providing only one value for the offset means that
+    # the same offset is applied
+    if type(offset) in [int, float] :
+        offset = offset * ones(len(gca().lines))
 
-	# But for a fine tuning, a list can be given.
-	# Be carefull, the list has to have the same size
-	# as the gca().lines list.
-	if type (offset) == list :
-		if len(offset) != len (gca().lines) :
-			print "The offset list has a size different of",
-			"the gca().lines list"
-			return
+    # But for a fine tuning, a list can be given.
+    # Be carefull, the list has to have the same size
+    # as the gca().lines list.
+    if type (offset) == list :
+        if len(offset) != len (gca().lines) :
+            print "The offset list has a size different of",
+            "the gca().lines list"
+            return
 
-	total_offset = 0
-	_min, _max = 1e31, -1e31
+    total_offset = 0
+    _min, _max = 1e31, -1e31
 
-	for i, j in zip(gca().lines, offset) :
-		y0 = i.get_ydata() + j + total_offset
-		i.set_ydata(y0)
-		if y0.min() < _min :
-			print "min", y0.min()
-			_min = y0.min()
-		if y0.max() > _max :
-			print "max", y0.max()
-			_max = y0.max()
-		total_offset = total_offset + j
+    for i, j in zip(gca().lines, offset) :
+        y0 = i.get_ydata() + j + total_offset
+        i.set_ydata(y0)
+        if y0.min() < _min :
+            print "min", y0.min()
+            _min = y0.min()
+        if y0.max() > _max :
+            print "max", y0.max()
+            _max = y0.max()
+        total_offset = total_offset + j
 
-	# Enlarge the ylim by 10 %
-	_min = _min - 0.1 * abs(_max - _min)
-	_max = _max + 0.1 * abs(_max - _min)
-	ylim(_min,_max)
-	draw()
+    # Enlarge the ylim by 10 %
+    _min = _min - 0.1 * abs(_max - _min)
+    _max = _max + 0.1 * abs(_max - _min)
+    ylim(_min,_max)
+    draw()
 
 
 
 def get_data(layer = -1):
-	"""
-	get_data
-	"""
+    """
+    get_data
+    """
 
-	return gca().lines[layer].get_data()
+    return gca().lines[layer].get_data()
 
 
 
 def rotate_data(theta = 0):
-	"""
-	rotate_data
-	"""
+    """
+    rotate_data
+    """
 
-	for i in gca().lines:
-		_x1, _y1 = i.get_data()
-		i.set_xdata(cos(theta) * _x1 + sin(theta) * _y1)
-		i.set_ydata(-sin(theta) * _x1 + cos(theta) * _y1)
+    for i in gca().lines:
+        _x1, _y1 = i.get_data()
+        i.set_xdata(cos(theta) * _x1 + sin(theta) * _y1)
+        i.set_ydata(-sin(theta) * _x1 + cos(theta) * _y1)
 
-	draw()
-	
+    draw()
+    
 
 
 def translate_data(displacement = 0):
-	"""
-	translate_data
-	"""
+    """
+    translate_data
+    """
 
-	for i in gca().lines:
-		_x1, _y1 = i.get_data()
-		i.set_xdata(_x1 + displacement[0])
-		i.set_ydata(_y1 + displacement[1])
+    for i in gca().lines:
+        _x1, _y1 = i.get_data()
+        i.set_xdata(_x1 + displacement[0])
+        i.set_ydata(_y1 + displacement[1])
 
-	draw()
+    draw()
 
 
 
 def rotate_data_by_mouse():
-	"""
-	rotate_data_by_mouse
-	"""
+    """
+    rotate_data_by_mouse
+    """
 
-	_p = ginput(2, show_clicks=False)
+    _p = ginput(2, show_clicks=False)
 
-	if len(_p) < 2:
-		return
+    if len(_p) < 2:
+        return
 
-	dtheta = - arctan2(_p[1][1], _p[1][0]) + arctan2(_p[0][1], _p[0][0])
-	print("dtheta: " + str(dtheta))
+    dtheta = - arctan2(_p[1][1], _p[1][0]) + arctan2(_p[0][1], _p[0][0])
+    print("dtheta: " + str(dtheta))
 
-	for i in gca().lines:
-		_x1, _y1 = i.get_data()
-		i.set_xdata(cos(dtheta) * _x1 + sin(dtheta) * _y1)
-		i.set_ydata(-sin(dtheta) * _x1 + cos(dtheta) * _y1)
+    for i in gca().lines:
+        _x1, _y1 = i.get_data()
+        i.set_xdata(cos(dtheta) * _x1 + sin(dtheta) * _y1)
+        i.set_ydata(-sin(dtheta) * _x1 + cos(dtheta) * _y1)
 
-	draw()
+    draw()
 
 
 
 def translate_data_by_mouse(layer = None):
-	"""
-	translate_data_by_mouse	
-	"""
+    """
+    translate_data_by_mouse 
+    """
 
-	_p = ginput(2, show_clicks=False)
+    _p = ginput(2, show_clicks=False)
 
-	if len(_p) < 2:
-		return
+    if len(_p) < 2:
+        return
 
-	xdisplacement = _p[1][0] - _p[0][0]
-	ydisplacement = _p[1][1] - _p[0][1]
-	print("dx: " + str(xdisplacement), "dy :" + str(ydisplacement))
+    xdisplacement = _p[1][0] - _p[0][0]
+    ydisplacement = _p[1][1] - _p[0][1]
+    print("dx: " + str(xdisplacement), "dy :" + str(ydisplacement))
 
-	if layer != None:
-		_x1, _y1 = gca().lines[layer].get_data()
-		gca().lines[layer].set_xdata(_x1 + xdisplacement)
-		gca().lines[layer].set_ydata(_y1 + ydisplacement)	
-	else:
-		for i in gca().lines:
-			_x1, _y1 = i.get_data()
-			i.set_xdata(_x1 + xdisplacement)
-			i.set_ydata(_y1 + ydisplacement)
+    if layer != None:
+        _x1, _y1 = gca().lines[layer].get_data()
+        gca().lines[layer].set_xdata(_x1 + xdisplacement)
+        gca().lines[layer].set_ydata(_y1 + ydisplacement)   
+    else:
+        for i in gca().lines:
+            _x1, _y1 = i.get_data()
+            i.set_xdata(_x1 + xdisplacement)
+            i.set_ydata(_y1 + ydisplacement)
 
-	draw()
+    draw()
 
 
 
 def get_index_list():
-	"""
-	get_index_list
-	"""
+    """
+    get_index_list
+    """
 
-	n = 0
+    n = 0
 
-	for i in gca().lines:
-		print("# " + str(n)+ "\tmarker: " + str(i.get_marker()) + "\tline: " + str(i.get_linestyle()) + "\tcolor: " + str(i.get_color()) + "\tlen: " + str(len(i.get_xdata())))
-		n += 1
-	return len(gca().lines)
+    for i in gca().lines:
+        print("# " + str(n)+ "\tmarker: " + str(i.get_marker()) + "\tline: " + str(i.get_linestyle()) + "\tcolor: " + str(i.get_color()) + "\tlen: " + str(len(i.get_xdata())))
+        n += 1
+    return len(gca().lines)
 
 
 
 def slice_graph(begin = 0, num = None, step = 1):
 
-	source = gcf()
-	drop = figure()
+    source = gcf()
+    drop = figure()
 
-	if num == None:
-		num = len(gca().lines)
+    if num == None:
+        num = len(gca().lines)
 
-	for i in range(begin, num, step):
-		x, y = source.axes[-1].lines[i].get_data()
-		marker = source.axes[-1].lines[i].get_marker()
-		markersize = source.axes[-1].lines[i].get_markersize()
-		linestyle = source.axes[-1].lines[i].get_linestyle()
-		linewidth = source.axes[-1].lines[i].get_linewidth()
-		color = source.axes[-1].lines[i].get_color()
-		label = source.axes[-1].lines[i].get_label()
-		figure(drop.number)
-		plot(x, y, marker=marker, markersize=markersize, linestyle=linestyle, linewidth=linewidth, color=color, label=label)
+    for i in range(begin, num, step):
+        x, y = source.axes[-1].lines[i].get_data()
+        marker = source.axes[-1].lines[i].get_marker()
+        markersize = source.axes[-1].lines[i].get_markersize()
+        linestyle = source.axes[-1].lines[i].get_linestyle()
+        linewidth = source.axes[-1].lines[i].get_linewidth()
+        color = source.axes[-1].lines[i].get_color()
+        label = source.axes[-1].lines[i].get_label()
+        figure(drop.number)
+        plot(x, y, marker=marker, markersize=markersize, linestyle=linestyle, linewidth=linewidth, color=color, label=label)
 
 
 
 def copy_paste_graph(source_fig, drop_fig):
 
-	source = figure(source_fig)
-	drop = figure(drop_fig)
+    source = figure(source_fig)
+    drop = figure(drop_fig)
 
-	for i in range(len(source.axes[-1].lines)):
-		x, y = source.axes[-1].lines[i].get_data()
-		marker = source.axes[-1].lines[i].get_marker()
-		markersize = source.axes[-1].lines[i].get_markersize()
-		linestyle = source.axes[-1].lines[i].get_linestyle()
-		linewidth = source.axes[-1].lines[i].get_linewidth()
-		color = source.axes[-1].lines[i].get_color()
-		label = source.axes[-1].lines[i].get_label()
-		figure(drop.number)
-		plot(x, y, marker=marker, markersize=markersize, linestyle=linestyle, linewidth=linewidth, color=color, label=label)
+    for i in range(len(source.axes[-1].lines)):
+        x, y = source.axes[-1].lines[i].get_data()
+        marker = source.axes[-1].lines[i].get_marker()
+        markersize = source.axes[-1].lines[i].get_markersize()
+        linestyle = source.axes[-1].lines[i].get_linestyle()
+        linewidth = source.axes[-1].lines[i].get_linewidth()
+        color = source.axes[-1].lines[i].get_color()
+        label = source.axes[-1].lines[i].get_label()
+        figure(drop.number)
+        plot(x, y, marker=marker, markersize=markersize, linestyle=linestyle, linewidth=linewidth, color=color, label=label)
 
 
 
@@ -495,18 +495,18 @@ def get_norm_angle():
 
 def remove_first(layer = 0):
 
-	gca().lines.pop(layer)
-	draw()
+    gca().lines.pop(layer)
+    draw()
 
 
 
 def remove_last(layer = None):
 
-	if layer == None:
-		gca().lines.pop()
-	else:
-		gca().lines.pop(layer)
-	draw()
+    if layer == None:
+        gca().lines.pop()
+    else:
+        gca().lines.pop(layer)
+    draw()
 
 
 
@@ -529,8 +529,8 @@ def line_matrix(bottom = None, top = None, xstep = 1, ystep = 1):
     inty = range((ymax - ymin)/ystep)
 
     for j in intx:
-	for k in inty:
-		cc[k][j] = 0
+    for k in inty:
+        cc[k][j] = 0
 
     if len(gca().lines) == 1:
         offset = 1
@@ -559,12 +559,12 @@ def line_matrix(bottom = None, top = None, xstep = 1, ystep = 1):
 
 
 def hsplitlist (liste, slices) :
-	return hsplit(array(liste), slices)
+    return hsplit(array(liste), slices)
 
 
 
 def vsplitlist (liste, slices) :
-	return vsplit(array(liste), slices)
+    return vsplit(array(liste), slices)
 
 ################################################################################
 #                                                                              #
@@ -575,43 +575,43 @@ def vsplitlist (liste, slices) :
 ################################################################################
 
 class graph:
-	"""
-	Overlaod of figure() + plot() function
-	a 2 in 1
-	graph(...) to open and plot
-	plot(...) to append a line in the graph
-	"""
-	
-	def __init__(self, *args):
-		figure()
-		plot(*args)
+    """
+    Overlaod of figure() + plot() function
+    a 2 in 1
+    graph(...) to open and plot
+    plot(...) to append a line in the graph
+    """
+    
+    def __init__(self, *args):
+        figure()
+        plot(*args)
 
 
 
 class imgraph:
-	"""
-	Overlaod of figure() + imshow() function
-	a 2 in 1
-	imgraph(...) to open and plot
-	imshow(...) to append a line in the graph
-	"""
+    """
+    Overlaod of figure() + imshow() function
+    a 2 in 1
+    imgraph(...) to open and plot
+    imshow(...) to append a line in the graph
+    """
 
-	def __init__(self, *args):
-		figure()
-		imshow(*args)
+    def __init__(self, *args):
+        figure()
+        imshow(*args)
 
 
 
 class pgraph:
-	"""
-	Overlaod of figure() + pcolor() function
-	a 2 in 1
-	colorgraph(...) to open and plot
-	pcolor(...) to append a line in the graph
-	"""
+    """
+    Overlaod of figure() + pcolor() function
+    a 2 in 1
+    colorgraph(...) to open and plot
+    pcolor(...) to append a line in the graph
+    """
 
-	def __init__(self, *args):
-		figure()
-		pcolormesh(*args)
+    def __init__(self, *args):
+        figure()
+        pcolormesh(*args)
 
 
