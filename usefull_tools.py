@@ -557,6 +557,15 @@ def line_matrix(bottom = None, top = None, xstep = 1, ystep = 1):
     return xx, yy, cc
 
 
+
+def hsplitlist (liste, slices) :
+	return hsplit(array(liste), slices)
+
+
+
+def vsplitlist (liste, slices) :
+	return vsplit(array(liste), slices)
+
 ################################################################################
 #                                                                              #
 # Different class of usefull graph.                                            #
