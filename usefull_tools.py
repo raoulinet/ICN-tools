@@ -568,7 +568,7 @@ def vsplitlist (liste, slices) :
 
 
 def deltaXY (timeout = 30) :
-    a, b = hsplitlist (ginput (n = 2, timeout = timeout)[0], 2)
+    a, b = hsplitlist (ginput (n = 2, timeout = timeout), 2)
     return a[1] - a[0], b[1] - b[0]
 
 
