@@ -300,25 +300,43 @@ def colorize(palette = "fancy", offset = 0, period = None):
 
 
 
-def offset(offset = 0):
+def offset(offset):
 	"""
 	Add an offset to curves
 	"""
 
-	_min, _max = ylim ()
+	# Providing only one value for the offset means that
+	# the same offset is applied
+	if type(offset) in [int, float] :
+		offset = offset * ones(len(gca().lines))
 
-	n = 0
-	for i in gca().lines:
-		y0 = i.get_ydata()
-		i.set_ydata(y0 + n*offset)
-		n = n + 1
-		if y0.min() + n*offset < _min :
-			_min = y0.min() + n*offset 
-		if y0.max() + n*offset > _max :
-			_max = y0.max() + n*offset 
-	
+	# But for a fine tuning, a list can be given.
+	# Be carefull, the list has to have the same size
+	# as the gca().lines list.
+	if type (offset) == list :
+		if len(offset) != len (gca().lines) :
+			print "The offset list has a size different of",
+			"the gca().lines list"
+			return
+
+	total_offset = 0
+	_min, _max = 1e31, -1e31
+
+	for i, j in zip(gca().lines, offset) :
+		y0 = i.get_ydata() + j + total_offset
+		i.set_ydata(y0)
+		if y0.min() < _min :
+			print "min", y0.min()
+			_min = y0.min()
+		if y0.max() > _max :
+			print "max", y0.max()
+			_max = y0.max()
+		total_offset = total_offset + j
+
+	# Enlarge the ylim by 10 %
+	_min = _min - 0.1 * abs(_max - _min)
+	_max = _max + 0.1 * abs(_max - _min)
 	ylim(_min,_max)
-
 	draw()
 
 
