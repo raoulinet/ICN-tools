@@ -209,7 +209,7 @@ def cx():
     """
     cx
     """
-    
+
     return ca().xaxis
 
 
@@ -218,7 +218,7 @@ def cy():
     """
     cy
     """
-    
+
     return ca().yaxis
 
 
@@ -227,7 +227,7 @@ def cT():
     """
     cT
     """
-    
+
     return ca().title
 
 
@@ -361,7 +361,7 @@ def rotate_data(theta = 0):
         i.set_ydata(-sin(theta) * _x1 + cos(theta) * _y1)
 
     draw()
-    
+
 
 
 def translate_data(displacement = 0):
@@ -402,7 +402,7 @@ def rotate_data_by_mouse():
 
 def translate_data_by_mouse(layer = None):
     """
-    translate_data_by_mouse 
+    translate_data_by_mouse
     """
 
     _p = ginput(2, show_clicks=False)
@@ -417,7 +417,7 @@ def translate_data_by_mouse(layer = None):
     if layer != None:
         _x1, _y1 = gca().lines[layer].get_data()
         gca().lines[layer].set_xdata(_x1 + xdisplacement)
-        gca().lines[layer].set_ydata(_y1 + ydisplacement)   
+        gca().lines[layer].set_ydata(_y1 + ydisplacement)
     else:
         for i in gca().lines:
             _x1, _y1 = i.get_data()
@@ -730,7 +730,7 @@ class graph:
     graph(...) to open and plot
     plot(...) to append a line in the graph
     """
-    
+
     def __init__(self, *args):
         figure()
         plot(*args)
